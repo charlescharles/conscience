@@ -1,37 +1,15 @@
-<!doctype html>
-<!--
- This page is shown when the extension button is clicked, because the
- "browser_action" field in manifest.json contains the "default_popup" key with
- value "popup.html".
- -->
-<html>
-  <head>
-    <title>Getting Started Extension's Popup</title>
-    <style>
-      body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-      }
-      #status {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
-      }
-    </style>
-
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-     -->
-  </head>
-  <body>
-    <h1>skljdflsdjflsdfj</h1>
-    <div id="status"></div>
-    <img id="image-result" hidden>
-  </body>
-</html>
-
+<div class='modal-dialog modal-lg'>
+    <div class='modal-content'>
+        <div class='modal-header'>
+            <h4 class='modal-title'>What else can you do with {0}?</h4>
+        </div>
+        <div class='modal-body'>
+            <p>Instead of spending <b>{1}</b> on <b>{2}</b>, you could</p>
+            <ul class='alternatives-list list-group'> </ul>
+        </div>
+        <div class='modal-footer'>
+            <button type='button' class='btn btn-default' data-dismiss='modal'>Cancel</button>
+                <button type='button' class='btn btn-primary'>OK</button>
+        </div>
+    </div>
+</div>"

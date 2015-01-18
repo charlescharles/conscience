@@ -5,13 +5,13 @@
 
     "version": "1.0",
 
-    "web_accessible_resources": ["fonts/*"],
+    "web_accessible_resources": ["fonts/*", "popup.html", "listItem.html"],
 
     "content_scripts": [
         {
             "matches": ["https://www.amazon.com/*", "http://www.amazon.com/*"],
             "js": ["js/jquery-1.11.2.js", "js/bootstrap.js", "js/jquery-ui.min.js", "js/contentscript.js"],
-            "css": ["css/bootstrap.min.css", "css/conscience.css"],
+            "css": ["css/bootstrap.css", "css/conscience.css"],
             "run_at": "document_end"
         }
     ],
