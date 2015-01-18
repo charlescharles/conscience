@@ -1,18 +1,17 @@
 {
     "manifest_version": 2,
 
-    "name": "Satisfaction",
+    "name": "Conscience",
 
     "version": "1.0",
 
-    "background": {
-        "page": "test1.html"
-    },
+    "web_accessible_resources": ["fonts/*"],
 
     "content_scripts": [
         {
             "matches": ["https://www.amazon.com/*", "http://www.amazon.com/*"],
-            "js": ["jquery-1.11.2.js", "jquery-ui.min.js", "contentscript.js"],
+            "js": ["js/jquery-1.11.2.js", "js/bootstrap.js", "js/jquery-ui.min.js", "js/contentscript.js"],
+            "css": ["css/bootstrap.min.css", "css/conscience.css"],
             "run_at": "document_end"
         }
     ],
