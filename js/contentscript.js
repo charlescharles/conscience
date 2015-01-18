@@ -5,38 +5,32 @@ String.prototype.format = function() {
     });
 };
 
-// var products = function () {
-//     return $('.asin-title').toArray().map(function(p) {return p.innerText;});
-// }
+var getProducts = function () {
+    return $('.asin-title').toArray().map(function(p) {return p.innerText;});
+}
 
-// var price = function () {
-//     var p = $('.grand-total-price').text().slice(1).replace(',', '');
-//     return parseFloat(p);
-// }
+var getPrice = function () {
+    var p = $('.grand-total-price').text().slice(1).replace(',', '');
+    return parseFloat(p);
+}
 
-// var html = function () {
-//     return myhtml.format(price(), products());
-// }
+// var getPrice = function () { return 50.00; };
 
-var getPrice = function () { return 50.00; };
-
-var getProducts = function () { return ['some shit', 'more shit', 'shit you dont need']; };
+// var getProducts = function () {
+//     return ["shit', 'useless shit', 'more shit you don't need"];
+// };
 
 var renderPopup = function (html, amount, prods) {
-    var price = '$' + amount.toString();
+    var price = numeral(amount).format('$0,0[.]00');
     var products = prods.join(', ');
     return html.format(price, price, products);
 };
 
 var renderListItem = function (html, donationOption, amt) {
-    var count = roundDiv(amt, donationOption.unitCost);
+    var count = numeral(amt / donationOption.unitCost).format('0,0');
     var text = donationOption.text.format(count);
     var imgUrl = chrome.extension.getURL(donationOption.imgSrc);
     return html.format(imgUrl, capitalize(text), donationOption.link);
-};
-
-var roundDiv = function (num, denom) {
-    return Math.round(10.0 * num / denom) / 10;
 };
 
 var capitalize = function (s) {
