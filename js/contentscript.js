@@ -31,7 +31,8 @@ var renderPopup = function (html, amount, prods) {
 var renderListItem = function (html, donationOption, amt) {
     var count = roundDiv(amt, donationOption.unitCost);
     var text = donationOption.text.format(count);
-    return html.format(capitalize(text), donationOption.link);
+    var imgUrl = chrome.extension.getURL(donationOption.imgSrc);
+    return html.format(imgUrl, capitalize(text), donationOption.link);
 };
 
 var roundDiv = function (num, denom) {
@@ -46,50 +47,50 @@ var donationOptions = [
     {
         id: 'cleftLip',
         unitCost: 240.0,
-        text: "fix {0} children's cleft lips",
+        text: "fix <b>{0}</b> children's cleft lips",
         imgSrc: 'img/cleft.jpg',
         link: 'www.google.com'
     },
     {
         id: 'cataract',
         unitCost: 35.0,
-        text: "help {0} people see",
+        text: "help <b>{0}</b> people see",
         imgSrc: 'img/cataract.jpg',
         link: 'www.google.com'
     },
     {
-        id: 'schisto',
+        id: 'parasite',
         unitCost: 0.3,
-        text: "rid {0} children of intestinal parasites",
-        imgSrc: 'img/cataract.jpg',
+        text: "rid <b>{0}</b> children of intestinal parasites",
+        imgSrc: 'img/parasite.jpg',
         link: 'www.google.com'
     },
     {
         id: 'net',
         unitCost: 5.3,
-        text: "provide {0} households with malaria bednets",
-        imgSrc: 'img/cataract.jpg',
+        text: "provide <b>{0}</b> households with malaria bednets",
+        imgSrc: 'img/bednet.jpg',
         link: 'www.google.com'
     },
     {
         id: 'school',
         unitCost: 175.0,
-        text: "help {0} Kenyan children afford a year of secondary school",
-        imgSrc: 'img/cataract.jpg',
+        text: "help <b>{0}</b> Kenyan children afford a year of secondary school",
+        imgSrc: 'img/school.jpg',
         link: 'www.google.com'
     },
     {
         id: 'roof',
         unitCost: 11.68,
-        text: "replace {0} Kenyan families' thatched roofs",
-        imgSrc: 'img/cataract.jpg',
+        text: "replace <b>{0}</b> Kenyan families' thatched roofs",
+        imgSrc: 'img/roof.jpg',
         link: 'www.google.com'
     },
     {
         id: 'food',
         unitCost: 175.0,
-        text: "give someone {0} years' worth of food",
-        imgSrc: 'img/cataract.jpg',
+        text: "give someone <b>{0}</b> years' worth of food",
+        imgSrc: 'img/food.jpg',
         link: 'www.google.com'
     }
 ];

@@ -5,7 +5,7 @@
 
     "version": "1.0",
 
-    "web_accessible_resources": ["fonts/*", "popup.html", "listItem.html"],
+    "web_accessible_resources": ["fonts/*", "popup.html", "listItem.html", "img/*"],
 
     "content_scripts": [
         {
