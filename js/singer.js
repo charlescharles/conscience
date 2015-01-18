@@ -43,64 +43,68 @@ var donationOptions = [
         unitCost: 240.0,
         text: "fix <b>{0}</b> children's cleft lips",
         imgSrc: 'img/cleft.jpg',
-        link: 'www.google.com'
+        link: 'https://givewell.secure.nonprofitsoapbox.com/donate-to-givewell'
     },
     {
         id: 'cataract',
         unitCost: 35.0,
         text: "help <b>{0}</b> people see",
         imgSrc: 'img/cataract.jpg',
-        link: 'www.google.com'
+        link: 'https://givewell.secure.nonprofitsoapbox.com/donate-to-givewell'
     },
     {
         id: 'parasite',
         unitCost: 0.3,
         text: "rid <b>{0}</b> children of intestinal parasites",
         imgSrc: 'img/parasite.jpg',
-        link: 'www.google.com'
+        link: 'https://givewell.secure.nonprofitsoapbox.com/donate-to-givewell'
     },
     {
         id: 'net',
         unitCost: 5.3,
         text: "provide <b>{0}</b> households with malaria bednets",
         imgSrc: 'img/bednet.jpg',
-        link: 'www.google.com'
+        link: 'https://givewell.secure.nonprofitsoapbox.com/donate-to-givewell'
     },
     {
         id: 'school',
         unitCost: 175.0,
         text: "help <b>{0}</b> Kenyan children afford a year of secondary school",
         imgSrc: 'img/school.jpg',
-        link: 'www.google.com'
+        link: 'https://givewell.secure.nonprofitsoapbox.com/donate-to-givewell'
     },
     {
         id: 'roof',
         unitCost: 11.68,
         text: "replace <b>{0}</b> Kenyan families' thatched roofs",
         imgSrc: 'img/roof.jpg',
-        link: 'www.google.com'
+        link: 'https://givewell.secure.nonprofitsoapbox.com/donate-to-givewell'
     },
     {
         id: 'food',
         unitCost: 175.0,
         text: "give someone <b>{0}</b> years' worth of food",
         imgSrc: 'img/food.jpg',
-        link: 'www.google.com'
+        link: 'https://givewell.secure.nonprofitsoapbox.com/donate-to-givewell'
     }
 ];
 
 var loaded = false;
 
+var affordable = function (option, amt) {
+    return amt > option.unitCost;
+}
+
 var feelsbad = function () {
     if (loaded) return;
-    if (true || document.getElementsByClassName('place-your-order-button').length) {
+    if (document.getElementsByClassName('place-your-order-button').length) {
         loaded = true;
         var layerNode = document.createElement('div');
         layerNode.setAttribute('id', 'modal');
         layerNode.setAttribute('class', 'modal');
 
-        var popupUrl = chrome.extension.getURL('popup.html');
-        var listItemUrl = chrome.extension.getURL('listItem.html');
+        var popupUrl = chrome.extension.getURL('html/popup.html');
+        var listItemUrl = chrome.extension.getURL('html/listItem.html');
 
         var amount = getPrice();
         var products = getProducts();
@@ -113,8 +117,10 @@ var feelsbad = function () {
                     return a.unitCost - b.unitCost;
                 });
                 opts.map(function (opt) {
-                    var li = renderListItem(listItemHtml, opt, amount);
-                    $('.alternatives-list').append(li);
+                    if (affordable(opt, amount)) {
+                        var li = renderListItem(listItemHtml, opt, amount);
+                        $('.alternatives-list').append(li);
+                    }
                 });
             });
         });
@@ -128,7 +134,6 @@ var feelsbad = function () {
 MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
 var observer = new MutationObserver(function(mutations, observer) {
-    console.log(mutations, observer);
     feelsbad();
 });
 

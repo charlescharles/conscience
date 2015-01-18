@@ -1,25 +1,23 @@
 {
     "manifest_version": 2,
 
-    "name": "Conscience",
+    "name": "Singer",
 
     "version": "1.0",
 
-    "web_accessible_resources": ["fonts/*", "popup.html", "listItem.html", "img/*"],
+    "web_accessible_resources": ["fonts/*", "html/*", "img/*"],
 
     "content_scripts": [
         {
             "matches": ["https://www.amazon.com/*", "http://www.amazon.com/*"],
-            "js": ["js/jquery-1.11.2.js", "js/bootstrap.js", "js/numeral.js", "js/contentscript.js"],
-            "css": ["css/bootstrap.css", "css/conscience.css"],
+            "js": ["js/jquery-1.11.2.js", "js/bootstrap.js", "js/numeral.js", "js/singer.js"],
+            "css": ["css/bootstrap.css"],
             "run_at": "document_end"
         }
     ],
 
     "permissions": [
         "tabs",
-        "http://*/*",
-        "activeTab",
-        "https://ajax.googleapis.com/"
+        "http://*/*"
     ]
 }
